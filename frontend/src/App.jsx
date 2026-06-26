@@ -103,7 +103,8 @@ export default function App() {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const res = await fetch(url, { ...options, headers });
+    const apiUrl = import.meta.env.VITE_API_URL || '';
+    const res = await fetch(`${apiUrl}${url}`, { ...options, headers });
     
     if (res.status === 401 || res.status === 403) {
       handleLogout();
